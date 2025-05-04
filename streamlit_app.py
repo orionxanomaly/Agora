@@ -48,7 +48,8 @@ if st.button("Ask the political factions on the Agora for their opinions!"):
     st.success("✅ Ok they're all done talking! (Finally).")
 
     st.info("🧠 The Archon explains the different perspectives to the Demos...")
-    synthesis_path = os.path.join(run_dir, f"Final_Synthesis_{timestamp}.txt")
+    synthesis_path = os.path.join(run_dir, f"synthesis_output_{timestamp}.txt")
+
 
 
 
