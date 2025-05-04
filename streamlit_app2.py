@@ -5,6 +5,7 @@ import shutil
 from datetime import datetime
 from fullsynthesisideologies import extract_text_from_html_files, run_all_ideologies, synthesize_reactions
 import re
+import textwrap
 
 
 st.title("🏛🗳👑 Welcome to the Agora, Citizen!  Remember, Nothing is Above Politics - Be Careful! 🛡️⚔️")
@@ -62,8 +63,16 @@ if st.button("Ask the political factions on the Agora for their opinions!"):
         if os.path.exists(filepath):
             with open(filepath, "r", encoding="utf-8") as f:
                 content = f.read()
+                
+                wrapped_lines = [textwrap.fill(line, width=80) if line.strip() != "" else "" for line in content.splitlines()]
+                wrapped_content = "\n".join(wrapped_lines)
+                tabs[i].markdown(f"<div style='white-space: pre-wrap; font-size: 1.1rem'>{wrapped_content}</div>", unsafe_allow_html=True)
+                
+                
+                
+                
             tabs[i].markdown(f"#### {ideology} Reaction", unsafe_allow_html=True)
-            tabs[i].markdown(f"<div style='white-space: pre-wrap; font-size: 1.0rem'>{content}</div>", unsafe_allow_html=True)
+            tabs[i].markdown(f"<div style='white-space: pre-wrap; font-size: 1.1rem'>{content}</div>", unsafe_allow_html=True)
 
 
 
