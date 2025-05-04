@@ -19,8 +19,11 @@ st.info("🌟For the best experience, we recommend you use a Browser Extension c
 # Create directories if they don't exist
 html_dir = "saved_html_files"
 extracted_dir = "extracted_articles"
+TXT_OUTPUT_DIR = "extracted_articles"
+
 os.makedirs(html_dir, exist_ok=True)
 os.makedirs(extracted_dir, exist_ok=True)
+
 
 # Optional: Manual text input
 manual_text = st.text_area("Or paste article text directly (optional)", height=300)
