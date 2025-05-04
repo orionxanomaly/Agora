@@ -42,13 +42,14 @@ if st.button("Ask the political factions on the Agora for their opinions!"):
     extract_text_from_html_files()
 
     st.info("🧠 Listening to the Denizens of the Agora...")
-    run_dir = run_all_ideologies()
+    run_dir, timestamp = run_all_ideologies()
 
 
     st.success("✅ Ok they're all done talking! (Finally).")
 
     st.info("🧠 The Archon explains the different perspectives to the Demos...")
-    synthesis_path = synthesize_reactions(run_dir)
+    synthesis_path = os.path.join(run_dir, f"Final_Synthesis_{timestamp}.txt")
+
 
 
     st.success("✅ The Demos may now deliberate on the matter further.")

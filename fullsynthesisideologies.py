@@ -322,7 +322,7 @@ def run_all_ideologies():
         save_output(ideology, output, run_dir, timestamp)
         print(f"✅ Saved {ideology} reaction.")
     synthesize_reactions(run_dir, timestamp)
-    return run_dir
+    return run_dir, timestamp
 
 if __name__ == "__main__":
     run_all_ideologies()
