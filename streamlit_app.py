@@ -3,7 +3,7 @@ import streamlit as st
 import os
 import shutil
 from datetime import datetime
-from fullsynthesisideologies import extract_text_from_html_files, run_all_ideologies
+from fullsynthesisideologies import extract_text_from_html_files, run_all_ideologies, synthesize_reactions
 
 
 
@@ -48,7 +48,8 @@ if st.button("Ask the political factions on the Agora for their opinions!"):
     st.success("✅ Ok they're all done talking! (Finally).")
 
     st.info("🧠 The Archon explains the different perspectives to the Demos...")
-    synthesis_path = run_synthesis(run_dir)
+    synthesis_path = synthesize_reactions(run_dir)
+
 
     st.success("✅ The Demos may now deliberate on the matter further.")
 
