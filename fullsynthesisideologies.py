@@ -6,7 +6,11 @@ import textwrap
 
 # === CONFIG ===
 import os
-openai.api_key = os.getenv("OPENAI_API_KEY")  # ✅ GOOD
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+
+
+
 
 HTML_DIR = "saved_html_files"
 TXT_OUTPUT_DIR = "extracted_articles"
