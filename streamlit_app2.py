@@ -87,7 +87,7 @@ if st.button("📣 Ask the political factions on the Agora for their opinions!  
         
         synthesis_lines = synthesis_text.splitlines()
         wrapped_synthesis = "\n".join([
-            textwrap.fill(line, width=140) if line.strip() != "" else ""
+            textwrap.fill(line, width=150) if line.strip() != "" else ""
             for line in synthesis_lines
         ])
         
