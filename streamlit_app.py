@@ -38,7 +38,7 @@ if uploaded_files:
 if st.button("Run Full Ideological Analysis"):
     if not manual_text.strip():
         st.info("🔄 Extracting article content from uploaded HTML...")
-        extract_html_from_files()
+        extract_text_from_html_files()
 
     st.info("🧠 Running GPT reactions for all ideologies...")
     run_dir = run_ideology_analysis()
