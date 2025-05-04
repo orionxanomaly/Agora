@@ -3,7 +3,8 @@ import streamlit as st
 import os
 import shutil
 from datetime import datetime
-from FullSynthesisIdeologies import extract_text_from_html_files, run_all_ideologies
+from fullsynthesisideologies import extract_text_from_html_files, run_all_ideologies
+
 
 
 
