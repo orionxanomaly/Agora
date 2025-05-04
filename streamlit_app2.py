@@ -42,9 +42,12 @@ if uploaded_files:
             f.write(file.read())
         st.success(f"Saved: {file.name}")
         
-        # Show preview of uploaded HTML file
+        # ✅ Render the HTML content directly for preview
+        with open(filepath, "r", encoding="utf-8") as html_file:
+            html_content = html_file.read()
         st.markdown("**🔍 Preview of uploaded HTML:**")
-        components.iframe(f"{filepath}", height=500, scrolling=True)
+        components.html(html_content, height=600, scrolling=True)
+
 
 
 
