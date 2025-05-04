@@ -31,12 +31,13 @@ manual_text = st.text_area("Or paste article text directly (optional)", height=3
 # Upload HTML files
 uploaded_files = st.file_uploader("Upload one or more HTML files", type=["html"], accept_multiple_files=True)
 
-# Save manual input if provided
-if manual_text.strip():
-    with open(os.path.join(extracted_dir, "manual_input.txt"), "w", encoding="utf-8") as f:
-        f.write(manual_text)
-    st.success("✅ Manual input saved.")
 
+# Clear previous text outputs
+if os.path.exists(TXT_OUTPUT_DIR):
+    for old_txt in os.listdir(TXT_OUTPUT_DIR):
+        file_path = os.path.join(TXT_OUTPUT_DIR, old_txt)
+        if file_path.endswith(".txt"):
+            os.remove(file_path)
 
 
 # Clear old HTML files
@@ -62,17 +63,12 @@ if uploaded_files:
         st.markdown("**🔍 Preview of uploaded HTML:**")
         components.html(html_content, height=600, scrolling=True)
 
-
-
-
-# Clear previous text outputs
-if os.path.exists(TXT_OUTPUT_DIR):
-    for old_txt in os.listdir(TXT_OUTPUT_DIR):
-        file_path = os.path.join(TXT_OUTPUT_DIR, old_txt)
-        if file_path.endswith(".txt"):
-            os.remove(file_path)
  
-        
+# Save manual input if provided
+if manual_text.strip():
+    with open(os.path.join(extracted_dir, "manual_input.txt"), "w", encoding="utf-8") as f:
+        f.write(manual_text)
+    st.success("✅ Manual input saved.")      
         
 
 
