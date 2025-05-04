@@ -3,10 +3,11 @@ from datetime import datetime
 import openai
 from bs4 import BeautifulSoup
 import textwrap
+import streamlit as st
 
 # === CONFIG ===
 import os
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
 
 
@@ -308,8 +309,12 @@ Please summarize the conflict/debate between the 5 ideologues (Traditionalist, L
         with open(outpath, "w", encoding="utf-8") as f:
             f.write(synthesis)
         print(f"✅ Synthesis saved to: {outpath}")
+        
+        return outpath
+        
     except Exception as e:
         print(f"❌ Synthesis GPT call failed: {e}")
+        return None
 
 # === Main Routine ===
 def run_all_ideologies():
@@ -321,8 +326,9 @@ def run_all_ideologies():
         output = generate_reaction(ideology, prompt, article_text)
         save_output(ideology, output, run_dir, timestamp)
         print(f"✅ Saved {ideology} reaction.")
-    synthesize_reactions(run_dir, timestamp)
-    return run_dir, timestamp
+    synthesis_path = synthesize_reactions(run_dir, timestamp)
+    return run_dir, timestamp, synthesis_path
+
 
 if __name__ == "__main__":
     run_all_ideologies()

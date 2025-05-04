@@ -42,14 +42,17 @@ if st.button("Ask the political factions on the Agora for their opinions!"):
     extract_text_from_html_files()
 
     st.info("🧠 Listening to the Denizens of the Agora...")
-    run_dir, timestamp = run_all_ideologies()
+    run_dir, timestamp, synthesis_path = run_all_ideologies()
+
 
 
     # 🗂️ Display the 5 ideological reactions in tabs
     st.markdown("### 🗂️ Reactions from the 5 Ideologies")
-    tabs = st.tabs(["Traditionalist", "Fascist", "Progressive", "Classical Liberal", "Communist"])
+    tabs = st.tabs(["Traditionalist", "Promethean", "Managerialist", "Legalist", "Liberationist"])
 
-    ideologies = ["Traditionalist", "Fascist", "Progressive", "ClassicalLiberal", "Communist"]
+
+    ideologies = ["Traditionalist", "Promethean", "Managerialist", "Legalist", "Liberationist"]
+
     for i, ideology in enumerate(ideologies):
         filename = f"{ideology}_reaction_{timestamp}.txt"
         filepath = os.path.join(run_dir, filename)
