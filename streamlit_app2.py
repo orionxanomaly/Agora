@@ -34,6 +34,17 @@ if manual_text.strip():
         f.write(manual_text)
     st.success("✅ Manual input saved.")
 
+
+
+# Clear old HTML files
+if os.path.exists(html_dir):
+    for old_file in os.listdir(html_dir):
+        file_path = os.path.join(html_dir, old_file)
+        if file_path.endswith(".html"):
+            os.remove(file_path)
+
+
+
 # Save uploaded HTML files
 if uploaded_files:
     for file in uploaded_files:
@@ -51,7 +62,13 @@ if uploaded_files:
 
 
 
-        
+# Clear previous text outputs
+if os.path.exists(TXT_OUTPUT_DIR):
+    for old_txt in os.listdir(TXT_OUTPUT_DIR):
+        file_path = os.path.join(TXT_OUTPUT_DIR, old_txt)
+        if file_path.endswith(".txt"):
+            os.remove(file_path)
+ 
         
         
 
