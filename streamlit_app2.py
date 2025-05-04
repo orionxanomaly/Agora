@@ -79,7 +79,7 @@ if st.button("📣 Ask the political factions on the Agora for their opinions!  
     if manual_text.strip():
         with open(os.path.join(extracted_dir, "manual_input.txt"), "w", encoding="utf-8") as f:
             f.write(manual_text)
-        st.success("✅ Manual input saved.")
+
     
     
    
