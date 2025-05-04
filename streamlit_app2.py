@@ -6,6 +6,7 @@ from datetime import datetime
 from fullsynthesisideologies import extract_text_from_html_files, run_all_ideologies, synthesize_reactions
 import re
 import textwrap
+import streamlit.components.v1 as components
 
 
 st.title("🏛🗳👑 Welcome to the e-Agora, Citizen!  Remember, Nothing is Above Politics - Be Careful! 🛡️⚔️")
@@ -40,6 +41,17 @@ if uploaded_files:
         with open(filepath, "wb") as f:
             f.write(file.read())
         st.success(f"Saved: {file.name}")
+        
+        # Show preview of uploaded HTML file
+        st.markdown("**🔍 Preview of uploaded HTML:**")
+        components.iframe(f"{filepath}", height=500, scrolling=True)
+
+
+
+        
+        
+        
+
 
 if st.button("📣 Ask the political factions on the Agora for their opinions!  This can take up to 2 minutes, please patiently wait for all to speak!"):
     st.info("🔄 Extracting article content from uploaded HTML...")
