@@ -3,7 +3,8 @@ import streamlit as st
 import os
 import shutil
 from datetime import datetime
-from FullSynthesisIdeologies import extract_html_from_files, run_ideology_analysis, run_synthesis
+from FullSynthesisIdeologies import extract_text_from_html_files, run_all_ideologies
+
 
 
 st.title("Ideological Reactions GPT Demo")
@@ -35,20 +36,20 @@ if uploaded_files:
             f.write(file.read())
         st.success(f"Saved: {file.name}")
 
-if st.button("Run Full Ideological Analysis"):
-    if not manual_text.strip():
-        st.info("🔄 Extracting article content from uploaded HTML...")
-        extract_text_from_html_files()
+if st.button("Ask the political factions on the Agora for their opinions!"):
+    st.info("🔄 Extracting article content from uploaded HTML...")
+    extract_text_from_html_files()
 
-    st.info("🧠 Running GPT reactions for all ideologies...")
+    st.info("🧠 Listening to the Denizens of the Agora...")
     run_dir = run_ideology_analysis()
 
-    st.success("✅ Reactions generated and saved.")
+    st.success("✅ Ok they're all done talking! (Finally).")
 
-    st.info("🧠 Running final synthesis across all 5 ideologies...")
+    st.info("🧠 The Archon explains the different perspectives to the Demos...")
     synthesis_path = run_synthesis(run_dir)
 
-    st.success("✅ Final synthesis complete.")
+    st.success("✅ The Demos may now deliberate on the matter further.")
+
 
     st.markdown("### Download Outputs")
     for fname in os.listdir(run_dir):
