@@ -236,10 +236,17 @@ def extract_text_from_html_files():
 # === Load and Combine Text ===
 def load_combined_article():
     texts = []
+    
+    # Include manual input if it exists
+    manual_input_path = os.path.join(TXT_OUTPUT_DIR, "manual_input.txt")
+    if os.path.exists(manual_input_path):
+        with open(manual_input_path, 'r', encoding='utf-8') as f:
+            texts.append(f"--- Manual Input ---\n{f.read().strip()}\n")
+    
     for filename in sorted(os.listdir(TXT_OUTPUT_DIR)):
-        if filename.endswith(".txt"):
+        if filename.endswith(".txt") and filename != "manual_input.txt":
             file_path = os.path.join(TXT_OUTPUT_DIR, filename)
-            with open(os.path.join(TXT_OUTPUT_DIR, filename), 'r', encoding='utf-8') as f:
+            with open(file_path, 'r', encoding='utf-8') as f:
                 texts.append(f"--- {filename} ---\n{f.read().strip()}\n")
     return "\n\n".join(texts)
 
