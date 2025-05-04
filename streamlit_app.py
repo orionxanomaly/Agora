@@ -3,8 +3,8 @@ import streamlit as st
 import os
 import shutil
 from datetime import datetime
-from extractHTML import extract_html_from_files
-from FullSynthesisIdeologies import run_ideology_analysis, run_synthesis
+from FullSynthesisIdeologies import extract_html_from_files, run_ideology_analysis, run_synthesis
+
 
 st.title("Ideological Reactions GPT Demo")
 st.markdown("Upload saved HTML article files or paste article text to generate political reactions from 5 ideological perspectives and a final synthesis.")
