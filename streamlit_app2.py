@@ -41,7 +41,7 @@ if uploaded_files:
             f.write(file.read())
         st.success(f"Saved: {file.name}")
 
-if st.button("Ask the political factions on the Agora for their opinions!  This can take up to 1 minute, please patiently wait for all to speak!"):
+if st.button("📣 Ask the political factions on the Agora for their opinions!  This can take up to 2 minutes, please patiently wait for all to speak!"):
     st.info("🔄 Extracting article content from uploaded HTML...")
     extract_text_from_html_files()
 
@@ -51,7 +51,7 @@ if st.button("Ask the political factions on the Agora for their opinions!  This 
 
 
     # 🗂️ Display the 5 ideological reactions in tabs
-    st.markdown("### 🗂️ Reactions from the 5 Ideologies")
+    st.markdown("### 🗂️ Reactions from the 5 Factions")
     tabs = st.tabs(["🦅🏡🧱 Traditionalist", "⚡🔱🔥 Promethean", "🏛️💼🧠 Managerialist", "📜⚖️🐍 Legalist", "✊🌈☭ Liberationist"])
 
 
@@ -87,7 +87,7 @@ if st.button("Ask the political factions on the Agora for their opinions!  This 
         
         synthesis_lines = synthesis_text.splitlines()
         wrapped_synthesis = "\n".join([
-            textwrap.fill(line, width=130) if line.strip() != "" else ""
+            textwrap.fill(line, width=140) if line.strip() != "" else ""
             for line in synthesis_lines
         ])
         
