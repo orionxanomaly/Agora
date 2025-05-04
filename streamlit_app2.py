@@ -4,7 +4,7 @@ import os
 import shutil
 from datetime import datetime
 from fullsynthesisideologies import extract_text_from_html_files, run_all_ideologies, synthesize_reactions
-
+import re
 
 
 
@@ -48,7 +48,7 @@ if st.button("Ask the political factions on the Agora for their opinions!"):
 
     # 🗂️ Display the 5 ideological reactions in tabs
     st.markdown("### 🗂️ Reactions from the 5 Ideologies")
-    tabs = st.tabs(["Traditionalist", "Promethean", "Managerialist", "Legalist", "Liberationist"])
+    tabs = st.tabs(["🦅🏡🧱 Traditionalist", "⚡🔱🔥 Promethean", "🏛️💼🧠 Managerialist", "📜⚖️🐍 Legalist", "✊🌈☭ Liberationist"])
 
 
     ideologies = ["Traditionalist", "Promethean", "Managerialist", "Legalist", "Liberationist"]
@@ -71,10 +71,10 @@ if st.button("Ask the political factions on the Agora for their opinions!"):
     synthesis_path = os.path.join(run_dir, f"synthesis_output_{timestamp}.txt")
 
 
-    st.markdown("### 🧠 Final Synthesis")
+    st.markdown("### The Archon Explains")
     if os.path.exists(synthesis_path):
         with open(synthesis_path, "r", encoding="utf-8") as f:
-            synthesis_text = f.read()
+            synthesis_text = re.sub(r"(?m)^(\d+)\.\s*\n", r"\1. ", synthesis_text)
         st.markdown(f"<div style='white-space: pre-wrap; font-size: 0.85rem'>{synthesis_text}</div>", unsafe_allow_html=True)
 
 
