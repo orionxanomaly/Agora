@@ -41,7 +41,7 @@ if uploaded_files:
             f.write(file.read())
         st.success(f"Saved: {file.name}")
 
-if st.button("Ask the political factions on the Agora for their opinions!"):
+if st.button("Ask the political factions on the Agora for their opinions!  This can take up to 1 minute, please patiently wait for all to speak!"):
     st.info("🔄 Extracting article content from uploaded HTML...")
     extract_text_from_html_files()
 
@@ -64,9 +64,9 @@ if st.button("Ask the political factions on the Agora for their opinions!"):
             with open(filepath, "r", encoding="utf-8") as f:
                 content = f.read()
                 
-                wrapped_lines = [textwrap.fill(line, width=100) if line.strip() != "" else "" for line in content.splitlines()]
+                wrapped_lines = [textwrap.fill(line, width=130) if line.strip() != "" else "" for line in content.splitlines()]
                 wrapped_content = "\n".join(wrapped_lines)
-                tabs[i].markdown(f"<div style='white-space: pre-wrap; font-size: 1.1rem'>{wrapped_content}</div>", unsafe_allow_html=True)
+                tabs[i].markdown(f"<div style='white-space: pre-wrap; font-size: 1.0rem'>{wrapped_content}</div>", unsafe_allow_html=True)
                 
 
 
