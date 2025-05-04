@@ -42,7 +42,8 @@ if st.button("Ask the political factions on the Agora for their opinions!"):
     extract_text_from_html_files()
 
     st.info("🧠 Listening to the Denizens of the Agora...")
-    run_dir = run_ideology_analysis()
+    run_dir = run_all_ideologies()
+
 
     st.success("✅ Ok they're all done talking! (Finally).")
 
