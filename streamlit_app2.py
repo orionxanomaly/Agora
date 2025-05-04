@@ -87,7 +87,7 @@ if st.button("Ask the political factions on the Agora for their opinions!  This 
         
         synthesis_lines = synthesis_text.splitlines()
         wrapped_synthesis = "\n".join([
-            textwrap.fill(line, width=100) if line.strip() != "" else ""
+            textwrap.fill(line, width=130) if line.strip() != "" else ""
             for line in synthesis_lines
         ])
         
@@ -114,5 +114,4 @@ if st.button("Ask the political factions on the Agora for their opinions!  This 
         with open(os.path.join(run_dir, fname), "rb") as f:
             st.download_button(label=f"Download {fname}", data=f, file_name=fname)
 
-    with open(synthesis_path, "rb") as f:
-        st.download_button(label="Download Final Synthesis", data=f, file_name=os.path.basename(synthesis_path))
+
