@@ -211,6 +211,7 @@ Now read the article and give your **critical ideological reaction**.
 def extract_text_from_html_files():
     if not os.path.exists(TXT_OUTPUT_DIR):
         os.makedirs(TXT_OUTPUT_DIR)
+        
     for filename in os.listdir(HTML_DIR):
         if filename.endswith(".html"):
             with open(os.path.join(HTML_DIR, filename), 'r', encoding='utf-8') as file:
@@ -225,7 +226,10 @@ def extract_text_from_html_files():
     # ✅ Also handle manual input, if present
     manual_input_path = os.path.join(TXT_OUTPUT_DIR, "manual_input.txt")
     if os.path.exists(manual_input_path):
-        shutil.copy(manual_input_path, os.path.join(TXT_OUTPUT_DIR, "From_Manual_Input.txt"))
+        print("✅ Manual input detected and will be processed")
+    else:
+        print("ℹ️ No manual input found")
+
         
         
 
@@ -234,6 +238,7 @@ def load_combined_article():
     texts = []
     for filename in sorted(os.listdir(TXT_OUTPUT_DIR)):
         if filename.endswith(".txt"):
+            file_path = os.path.join(TXT_OUTPUT_DIR, filename)
             with open(os.path.join(TXT_OUTPUT_DIR, filename), 'r', encoding='utf-8') as f:
                 texts.append(f"--- {filename} ---\n{f.read().strip()}\n")
     return "\n\n".join(texts)
