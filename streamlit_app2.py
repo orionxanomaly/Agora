@@ -8,7 +8,7 @@ import re
 import textwrap
 
 
-st.title("🏛🗳👑 Welcome to the Agora, Citizen!  Remember, Nothing is Above Politics - Be Careful! 🛡️⚔️")
+st.title("🏛🗳👑 Welcome to the eAgora, Citizen!  Remember, Nothing is Above Politics - Be Careful! 🛡️⚔️")
 st.markdown("Upload saved HTML article files (you must use the browser extension, see below) OR paste any article text in the box below to generate political reactions from our 5 largest ideological factions and a summary by the Archon of Athens.")
 
 st.info("🌟For the best experience, we recommend you use a Browser Extension called SingleFile, found [here](https://chromewebstore.google.com/detail/singlefile/mpiodijhokgodhhofbcjdecpffjipkle). Install the (amazingly useful!) extension and you will be able to visit any web page and save the page as a clean single HTML file which is readable. After installing, visit a page with an article or other text, and click the add-on icon on your browser (Chrome or Opera compatible) and the page will save and download. Then click below to upload the downloaded HTML from your downloads folder.")
@@ -64,16 +64,10 @@ if st.button("Ask the political factions on the Agora for their opinions!"):
             with open(filepath, "r", encoding="utf-8") as f:
                 content = f.read()
                 
-                wrapped_lines = [textwrap.fill(line, width=80) if line.strip() != "" else "" for line in content.splitlines()]
+                wrapped_lines = [textwrap.fill(line, width=100) if line.strip() != "" else "" for line in content.splitlines()]
                 wrapped_content = "\n".join(wrapped_lines)
                 tabs[i].markdown(f"<div style='white-space: pre-wrap; font-size: 1.1rem'>{wrapped_content}</div>", unsafe_allow_html=True)
                 
-                
-                
-                
-            tabs[i].markdown(f"#### {ideology} Reaction", unsafe_allow_html=True)
-            tabs[i].markdown(f"<div style='white-space: pre-wrap; font-size: 1.1rem'>{content}</div>", unsafe_allow_html=True)
-
 
 
 
@@ -90,7 +84,16 @@ if st.button("Ask the political factions on the Agora for their opinions!"):
             
             
         synthesis_text = re.sub(r"(?m)^(\d+)\.\s*\n", r"\1. ", synthesis_text)
-        st.markdown(f"<div style='white-space: pre-wrap; font-size: 1.0rem'>{synthesis_text}</div>", unsafe_allow_html=True)
+        
+        synthesis_lines = synthesis_text.splitlines()
+        wrapped_synthesis = "\n".join([
+            textwrap.fill(line, width=100) if line.strip() != "" else ""
+            for line in synthesis_lines
+        ])
+        
+        
+        
+        st.markdown(f"<div style='white-space: pre-wrap; font-size: 1.0rem'>{wrapped_synthesis}</div>", unsafe_allow_html=True)
 
 
 
