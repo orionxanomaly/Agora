@@ -7,7 +7,7 @@ from fullsynthesisideologies import extract_text_from_html_files, run_all_ideolo
 import re
 
 
-st.title("Welcome to the Agora, Citizen!  Remember, Nothing is Above Politics - Be Careful!")
+st.title("🏛🗳⚖️ Welcome to the Agora, Citizen!  👑🛡️⚔️🏰 Remember, Nothing is Above Politics - Be Careful!")
 st.markdown("Upload saved HTML article files (you must use the browser extension, see below) OR paste any article text in the box below to generate political reactions from our 5 largest ideological factions and a summary by the Archon of Athens.")
 
 st.info("For the best experience, we recommend you use a Browser Extension called SingleFile, found [here](https://chromewebstore.google.com/detail/singlefile/mpiodijhokgodhhofbcjdecpffjipkle). Install the (amazingly useful!) extension and you will be able to visit any web page and save the page as a clean single HTML file which is readable. After installing, visit a page with an article or other text, and click the add-on icon on your browser (Chrome or Opera compatible) and the page will save and download. Then click below to upload the downloaded HTML from your downloads folder.")
