@@ -221,6 +221,13 @@ def extract_text_from_html_files():
                 output_filename = os.path.splitext(filename)[0] + ".txt"
                 with open(os.path.join(TXT_OUTPUT_DIR, output_filename), 'w', encoding='utf-8') as out:
                     out.write(text)
+                    
+    # ✅ Also handle manual input, if present
+    manual_input_path = os.path.join(TXT_OUTPUT_DIR, "manual_input.txt")
+    if os.path.exists(manual_input_path):
+        shutil.copy(manual_input_path, os.path.join(TXT_OUTPUT_DIR, "From_Manual_Input.txt"))
+        
+        
 
 # === Load and Combine Text ===
 def load_combined_article():
