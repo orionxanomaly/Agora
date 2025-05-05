@@ -14,7 +14,7 @@ OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
 
 HTML_DIR = "saved_html_files"
-TXT_OUTPUT_DIR = "extracted_articles"
+# txt_output_dir = "extracted_articles"
 BASE_OUTPUT_DIR = "ideological_reactions_runs"
 
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
@@ -208,9 +208,9 @@ Now read the article and give your **critical ideological reaction**.
 }
 
 # === HTML Extraction ===
-def extract_text_from_html_files():
-    if not os.path.exists(TXT_OUTPUT_DIR):
-        os.makedirs(TXT_OUTPUT_DIR)
+def extract_text_from_html_files(txt_output_dir):
+    if not os.path.exists(txt_output_dir):
+        os.makedirs(txt_output_dir)
         
     for filename in os.listdir(HTML_DIR):
         if filename.endswith(".html"):
@@ -220,11 +220,11 @@ def extract_text_from_html_files():
                     script.decompose()
                 text = soup.get_text(separator=' ', strip=True)
                 output_filename = os.path.splitext(filename)[0] + ".txt"
-                with open(os.path.join(TXT_OUTPUT_DIR, output_filename), 'w', encoding='utf-8') as out:
+                with open(os.path.join(txt_output_dir, output_filename), 'w', encoding='utf-8') as out:
                     out.write(text)
                     
     # ✅ Also handle manual input, if present
-    manual_input_path = os.path.join(TXT_OUTPUT_DIR, "manual_input.txt")
+    manual_input_path = os.path.join(txt_output_dir, "manual_input.txt")
     if os.path.exists(manual_input_path):
         print("✅ Manual input detected and will be processed")
     else:
@@ -234,18 +234,18 @@ def extract_text_from_html_files():
         
 
 # === Load and Combine Text ===
-def load_combined_article():
+def load_combined_article(txt_output_dir):
     texts = []
     
     # Include manual input if it exists
-    manual_input_path = os.path.join(TXT_OUTPUT_DIR, "manual_input.txt")
+    manual_input_path = os.path.join(txt_output_dir, "manual_input.txt")
     if os.path.exists(manual_input_path):
         with open(manual_input_path, 'r', encoding='utf-8') as f:
             texts.append(f"--- Manual Input ---\n{f.read().strip()}\n")
     
-    for filename in sorted(os.listdir(TXT_OUTPUT_DIR)):
+    for filename in sorted(os.listdir(txt_output_dir)):
         if filename.endswith(".txt") and filename != "manual_input.txt":
-            file_path = os.path.join(TXT_OUTPUT_DIR, filename)
+            file_path = os.path.join(txt_output_dir, filename)
             with open(file_path, 'r', encoding='utf-8') as f:
                 texts.append(f"--- {filename} ---\n{f.read().strip()}\n")
     return "\n\n".join(texts)
@@ -336,9 +336,9 @@ First, please identify which faction of the 5 the speaker or author is most like
         return None
 
 # === Main Routine ===
-def run_all_ideologies():
-    extract_text_from_html_files()
-    article_text = load_combined_article()
+def run_all_ideologies(txt_output_dir):
+    extract_text_from_html_files(txt_output_dir)
+    article_text = load_combined_article(txt_output_dir)
     run_dir, timestamp = create_run_folder()
     for ideology, prompt in PROMPTS.items():
         print(f"⏳ Processing {ideology}...")
