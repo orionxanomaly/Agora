@@ -10,7 +10,8 @@ import streamlit.components.v1 as components
 import uuid
 
 SESSION_ID = str(uuid.uuid4())[:8]  # Short unique ID per user session
-st.info(f"🔐 Session ID: `{session_id}`")
+st.info(f"🔐 Session ID: `{SESSION_ID}`")
+
 
 
 st.title("🏛🗳👑 Welcome to the e-Agora, Citizen!  Remember, Nothing is Above Politics - Be Careful! 🛡️⚔️")
@@ -28,7 +29,7 @@ TXT_OUTPUT_DIR = extracted_dir
 
 os.makedirs(html_dir, exist_ok=True)
 os.makedirs(extracted_dir, exist_ok=True)
-os.makedirs(run_dir, exist_ok=True)
+
 
 # Optional: Manual text input
 manual_text = st.text_area("Or paste article text directly (optional)", height=300)
