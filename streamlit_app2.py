@@ -7,6 +7,9 @@ from fullsynthesisideologies import extract_text_from_html_files, run_all_ideolo
 import re
 import textwrap
 import streamlit.components.v1 as components
+import uuid
+
+SESSION_ID = str(uuid.uuid4())[:8]  # Short unique ID per user session
 
 
 st.title("🏛🗳👑 Welcome to the e-Agora, Citizen!  Remember, Nothing is Above Politics - Be Careful! 🛡️⚔️")
@@ -17,9 +20,10 @@ st.info("🌟For the best experience, we recommend you use a Browser Extension c
 
 
 # Create directories if they don't exist
-html_dir = "saved_html_files"
-extracted_dir = "extracted_articles"
-TXT_OUTPUT_DIR = "extracted_articles"
+html_dir = f"saved_html_files_{SESSION_ID}"
+extracted_dir = f"extracted_articles_{SESSION_ID}"
+TXT_OUTPUT_DIR = extracted_dir
+
 
 os.makedirs(html_dir, exist_ok=True)
 os.makedirs(extracted_dir, exist_ok=True)
@@ -156,5 +160,10 @@ if st.button("📣 Ask the political factions on the Agora for their opinions!  
     for fname in os.listdir(run_dir):
         with open(os.path.join(run_dir, fname), "rb") as f:
             st.download_button(label=f"Download {fname}", data=f, file_name=fname)
+            
+    # ✅ Optional: Clean up session-specific folders
+    shutil.rmtree(html_dir, ignore_errors=True)
+    shutil.rmtree(extracted_dir, ignore_errors=True)
+
 
 
