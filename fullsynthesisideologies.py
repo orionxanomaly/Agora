@@ -336,8 +336,8 @@ First, please identify which faction the AUTHOR of the ARTICLE or TEXT that was 
         return None
 
 # === Main Routine ===
-def run_all_ideologies(txt_output_dir):
-    extract_text_from_html_files(txt_output_dir)
+def run_all_ideologies(html_dir, txt_output_dir):
+    extract_text_from_html_files(html_dir, txt_output_dir)
     article_text = load_combined_article(txt_output_dir)
     run_dir, timestamp = create_run_folder()
     for ideology, prompt in PROMPTS.items():
