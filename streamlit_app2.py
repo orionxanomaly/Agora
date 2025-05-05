@@ -8,6 +8,10 @@ import re
 import textwrap
 import streamlit.components.v1 as components
 import uuid
+import zipfile
+import io
+
+
 
 SESSION_ID = str(uuid.uuid4())[:8]  # Short unique ID per user session
 st.info(f"🔐 Session ID: `{SESSION_ID}`")
@@ -148,20 +152,40 @@ if st.button("📣 Ask the political factions on the Agora for their opinions!  
 
 
 
-
-
-
-
-
-
-
     st.success("✅ The Demos may now deliberate on the matter further.")
 
 
-    st.markdown("### Download Outputs")
+
+st.markdown("### Download All Outputs")
+
+# Create a zip in memory
+zip_buffer = io.BytesIO()
+with zipfile.ZipFile(zip_buffer, "w") as zip_file:
     for fname in os.listdir(run_dir):
-        with open(os.path.join(run_dir, fname), "rb") as f:
-            st.download_button(label=f"Download {fname}", data=f, file_name=fname)
+        filepath = os.path.join(run_dir, fname)
+        zip_file.write(filepath, arcname=fname)
+
+# Reset buffer position to the start
+zip_buffer.seek(0)
+
+# Create one download button for the zip
+st.download_button(
+    label="📦 Download All Outputs (ZIP)",
+    data=zip_buffer,
+    file_name=f"Agora_Outputs_{timestamp}.zip",
+    mime="application/zip"
+)
+
+
+
+
+
+
+
+
+
+
+
             
     # ✅ Optional: Clean up session-specific folders
     shutil.rmtree(html_dir, ignore_errors=True)
