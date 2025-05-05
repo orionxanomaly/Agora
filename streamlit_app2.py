@@ -176,6 +176,9 @@ st.download_button(
     mime="application/zip"
 )
 
+# ✅ Optional: Clean up session-specific folders
+shutil.rmtree(html_dir, ignore_errors=True)
+shutil.rmtree(extracted_dir, ignore_errors=True)
 
 
 
@@ -187,9 +190,7 @@ st.download_button(
 
 
             
-    # ✅ Optional: Clean up session-specific folders
-    shutil.rmtree(html_dir, ignore_errors=True)
-    shutil.rmtree(extracted_dir, ignore_errors=True)
+
 
 
 
