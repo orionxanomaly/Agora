@@ -96,7 +96,7 @@ if st.button("📣 Ask the political factions on the Agora for their opinions!  
     
     
     st.info("🔄 Extracting article content from uploaded HTML or manual input...")
-    extract_text_from_html_files(TXT_OUTPUT_DIR)
+    extract_text_from_html_files(html_dir, TXT_OUTPUT_DIR)
 
     st.info("🧠 Listening to the Denizens of the Agora...")
     run_dir, timestamp, synthesis_path = run_all_ideologies(TXT_OUTPUT_DIR)

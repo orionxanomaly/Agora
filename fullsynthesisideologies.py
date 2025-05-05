@@ -13,7 +13,7 @@ OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
 
 
-HTML_DIR = "saved_html_files"
+
 # txt_output_dir = "extracted_articles"
 BASE_OUTPUT_DIR = "ideological_reactions_runs"
 
@@ -208,13 +208,13 @@ Now read the article and give your **critical ideological reaction**.
 }
 
 # === HTML Extraction ===
-def extract_text_from_html_files(txt_output_dir):
+def extract_text_from_html_files(html_dir, txt_output_dir):
     if not os.path.exists(txt_output_dir):
         os.makedirs(txt_output_dir)
         
-    for filename in os.listdir(HTML_DIR):
+    for filename in os.listdir(html_dir):
         if filename.endswith(".html"):
-            with open(os.path.join(HTML_DIR, filename), 'r', encoding='utf-8') as file:
+            with open(os.path.join(html_dir, filename), 'r', encoding='utf-8') as file:
                 soup = BeautifulSoup(file, 'html.parser')
                 for script in soup(["script", "style"]):
                     script.decompose()
