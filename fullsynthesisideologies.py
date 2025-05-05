@@ -302,7 +302,7 @@ def synthesize_reactions(run_dir, timestamp):
 
     SYNTHESIS_PROMPT = """
     
-Please summarize the conflict/debate between the 5 ideologues (Traditionalist, Legalist, Promethean, Liberationist, Managerialist) to this article or topic that they just reacted to referring to them by those names.  Please also map out and describe roughly how the battlelines between the 5 factions break down - who mostly agrees with whom and who doesn't.  Who seems especially angry, passionate, or concerned with this issue?  Who seems like it's somewhat less important to them?"""
+First, please identify which faction of the 5 the speaker or author is most likely a member of or is most likely to agree with.  Then, please summarize the conflict/debate between the 5 faction ideologues (Traditionalist, Legalist, Promethean, Liberationist, Managerialist) to this article or topic that they just reacted to referring to them by those names.  Please also map out and describe roughly how the battlelines between the 5 factions break down - who mostly agrees with whom and who doesn't.  Who seems especially angry, passionate, or concerned with this issue?  Who seems like it's somewhat less important to them?"""
 
     try:
         response = client.chat.completions.create(
